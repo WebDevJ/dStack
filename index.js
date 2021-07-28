@@ -1,14 +1,26 @@
 console.log("hello");
 const Generation = require('./generation.js');
 const GenerationEngine = require('./engine');
-
 const engine = new GenerationEngine();
 
+const express = require('express');
+const app = new express();
+const PORT = 3000;
 engine.start();
+//express.get( route , callBackFunction)
+//app.get( '/dragon/new', (req, res)=>{});
+app.get( '/', (req, res)=>{
+    res.json("GET = /dragon/new")
+});
 
-setTimeout( ()=>{
-    engine.stop();
-}, 20000);
+app.get( '/dragon/new', (req, res)=>{
+    res.json({dragon: engine.generation.newDragon()})
+});
+
+app.listen(PORT,()=> console.log(`http://localhost:${PORT}`))
+// sect2 webserver& api //setTimeout( ()=>{
+//     engine.stop();
+// }, 20000);
 
 //random generation
 const generation = new Generation();
@@ -17,6 +29,8 @@ console.log('generation', generation);
 
 const gooby = generation.newDragon();
 console.log('gooby',gooby);
+
+module.exports = app;
 
 // setTimeout( ()=>{
 //     const dooby = generation.newDragon();
