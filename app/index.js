@@ -1,23 +1,27 @@
 console.log("hello");
-const Generation = require('./generation.js');
-const GenerationEngine = require('./engine');
+const Generation = require('./generation/index.js');
+const GenerationEngine = require('./generation/engine');
 const engine = new GenerationEngine();
 
 const express = require('express');
 const app = new express();
-const PORT = 3000;
+const dragonRouter = require('./api/dragon.js')
+const generationRouter = require('./api/generation.js')
+
+//bind object called engine to express application
+app.locals.engine = engine;
+app.use('/dragon', dragonRouter); //sub routes for /dragon
+app.use('/generation', generationRouter); //sub routes for /dragon
+
 engine.start();
 //express.get( route , callBackFunction)
 //app.get( '/dragon/new', (req, res)=>{});
-app.get( '/', (req, res)=>{
-    res.json("GET = /dragon/new")
+app.get( '/', (req, res)=>{ 
+    res.json(`GET = /dragon/new , GET = /generation`)
 });
 
-app.get( '/dragon/new', (req, res)=>{
-    res.json({dragon: engine.generation.newDragon()})
-});
 
-app.listen(PORT,()=> console.log(`http://localhost:${PORT}`))
+
 // sect2 webserver& api //setTimeout( ()=>{
 //     engine.stop();
 // }, 20000);

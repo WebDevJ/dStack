@@ -1,5 +1,5 @@
 // traits.json =  global conf file that defines global values for entire app json array
-const TRAITS = require('./traits.json') // TRAITS global const thanever change
+const TRAITS = require('../data/traits.json') // TRAITS global const thanever change
 
 const DEFAULT_PROPERTIES = { //globel props that dont change
     nickname: 'unnamed',
