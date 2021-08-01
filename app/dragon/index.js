@@ -1,6 +1,5 @@
 // traits.json =  global conf file that defines global values for entire app json array
-const TRAITS = require('../data/traits.json') // TRAITS global const thanever change
-
+const TRAITS = require('../../data/traits.json') // TRAITS global const thanever change
 const DEFAULT_PROPERTIES = { //globel props that dont change
     nickname: 'unnamed',
     generationId: undefined, //foreign value
@@ -22,7 +21,6 @@ const DEFAULT_PROPERTIES = { //globel props that dont change
 //CORE Dragon class; central model for entire app
 class Dragon{
     // set prop for instance of a class //construct objects as instances of the class
-    
     constructor({birthdate, nickname, traits, generationId}={}){  // unique values for this class
          // {birthdate,  nickname} set keys so no order of parmaters is not needed
         // ={} set DEFAULT_PROPERTIES if no unique values given

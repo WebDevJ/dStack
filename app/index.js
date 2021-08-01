@@ -10,9 +10,10 @@ const generationRouter = require('./api/generation.js')
 
 //bind object called engine to express application
 app.locals.engine = engine;
+// app.use() middleware functions:
 app.use('/dragon', dragonRouter); //sub routes for /dragon
 app.use('/generation', generationRouter); //sub routes for /dragon
-
+////////////////////////////////
 engine.start();
 //express.get( route , callBackFunction)
 //app.get( '/dragon/new', (req, res)=>{});
