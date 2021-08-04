@@ -13,6 +13,12 @@ app.locals.engine = engine;
 // app.use() middleware functions:
 app.use('/dragon', dragonRouter); //sub routes for /dragon
 app.use('/generation', generationRouter); //sub routes for /dragon
+app.use( (err, req, res, next)=>{
+    const statusCode = err.statusCode || 500;
+    res.json({
+        type: 'error', message: err.message
+    })
+}); // error handling
 ////////////////////////////////
 engine.start();
 //express.get( route , callBackFunction)

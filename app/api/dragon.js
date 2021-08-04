@@ -3,7 +3,7 @@ const DragonTable = require('../dragon/table.js')
 const router = new Router();
 
 //dragon sub routes
-router.get( '/new', (req, res)=>{
+router.get( '/new', (req, res, next)=>{ // next argu. from middleware
     //res.json({dragon: engine.generation.newDragon()}) // out of scope
     //use req.apps.locals
     
@@ -18,7 +18,7 @@ router.get( '/new', (req, res)=>{
             dragon.dragonId= dragonId;
             res.json({ dragon });
         })
-        .catch(error => console.error(error));
+        .catch(error => next(error));
 
 });
 
